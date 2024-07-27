@@ -23,7 +23,7 @@ public class SampleJob {
     private StepBuilderFactory stepBuilderFactory;
 
     @Autowired
-    private SecondTasklet secondTasklet;
+    SecondTasklet secondTasklet;
 
     /*
     * Job은 한단계 이상으로 가능하다.
@@ -54,23 +54,11 @@ public class SampleJob {
         };
     }
 
-
     private Step secondStep() {
         return stepBuilderFactory.get("Second Step")
-                .tasklet(secondTasklet) // tasklet 인터페이스를 구현한 secondTasklet
+                .tasklet(secondTasklet)
                 .build();
     }
-
-//    private Tasklet secondTask() {
-//        return new Tasklet() {
-//
-//            @Override
-//            public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-//                System.out.println("This is second tasklet step");
-//                return RepeatStatus.FINISHED;
-//            }
-//        };
-//    }
 
     private Step thirdStep() {
         return stepBuilderFactory.get("third Step")
